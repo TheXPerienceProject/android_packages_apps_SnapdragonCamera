@@ -49,6 +49,7 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_PRODUCT_MODULE := true
 
 LOCAL_MODULE    := libjni_snapcammosaic
+LOCAL_PRODUCT_MODULE := true
 include $(BUILD_SHARED_LIBRARY)
 
 # TinyPlanet
@@ -59,6 +60,7 @@ LOCAL_LDFLAGS   := -llog -ljnigraphics
 LOCAL_SDK_VERSION := 9
 LOCAL_PRODUCT_MODULE := true
 LOCAL_MODULE    := libjni_snapcamtinyplanet
+LOCAL_PRODUCT_MODULE := true
 LOCAL_SRC_FILES := tinyplanet.cc
 
 LOCAL_CFLAGS    += -ffast-math -O3 -funroll-loops
@@ -72,6 +74,7 @@ LOCAL_LDFLAGS   := -llog
 LOCAL_SDK_VERSION := 9
 LOCAL_PRODUCT_MODULE := true
 LOCAL_MODULE    := libjni_imageutil
+LOCAL_PRODUCT_MODULE := true
 LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := image_util_jni.cpp
 LOCAL_CFLAGS    += -ffast-math -O3 -funroll-loops
