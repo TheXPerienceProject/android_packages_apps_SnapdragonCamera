@@ -198,7 +198,6 @@ public class PhotoMenu extends MenuController
                 CameraSettings.KEY_REDEYE_REDUCTION,
                 CameraSettings.KEY_SELFIE_MIRROR,
                 CameraSettings.KEY_SHUTTER_SOUND,
-                CameraSettings.KEY_MAX_BRIGHTNESS,
                 CameraSettings.KEY_SATURATION,
                 CameraSettings.KEY_CONTRAST,
                 CameraSettings.KEY_SHARPNESS,
@@ -226,7 +225,6 @@ public class PhotoMenu extends MenuController
                 CameraSettings.KEY_FOCUS_TIME,
                 CameraSettings.KEY_SHUTTER_SPEED,
                 CameraSettings.KEY_REDEYE_REDUCTION,
-                CameraSettings.KEY_MAX_BRIGHTNESS,
                 CameraSettings.KEY_SATURATION,
                 CameraSettings.KEY_CONTRAST,
                 CameraSettings.KEY_SHARPNESS,
@@ -1318,7 +1316,6 @@ public class PhotoMenu extends MenuController
         mPopupStatus = POPUP_SECOND_LEVEL;
 
         // Developer menu
-        if (pref.getKey().equals(CameraSettings.KEY_MAX_BRIGHTNESS)) {
             mPrivateCounter++;
             if (mPrivateCounter >= DEVELOPER_MENU_TOUCH_COUNT) {
                 SharedPreferences prefs = PreferenceManager
@@ -1337,11 +1334,8 @@ public class PhotoMenu extends MenuController
                             R.string.developer_menu_disabled, Toast.LENGTH_SHORT).show();
                 }
                 mPrivateCounter = 0;
-            }
-        } else {
-            mPrivateCounter = 0;
-        }
-    }
+			}
+	}
 
     public void onListMenuTouched() {
         mUI.removeLevel2();

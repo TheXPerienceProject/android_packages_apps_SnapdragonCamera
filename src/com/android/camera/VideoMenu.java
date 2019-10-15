@@ -901,7 +901,6 @@ public class VideoMenu extends MenuController
         mPopupStatus = POPUP_SECOND_LEVEL;
 
         // Developer menu
-        if (pref.getKey().equals(CameraSettings.KEY_MAX_BRIGHTNESS)) {
             mPrivateCounter++;
             if (mPrivateCounter >= DEVELOPER_MENU_TOUCH_COUNT) {
                 SharedPreferences prefs = PreferenceManager
@@ -921,10 +920,7 @@ public class VideoMenu extends MenuController
                 }
                 mPrivateCounter = 0;
             }
-        } else {
-            mPrivateCounter = 0;
-        }
-    }
+	}
 
     public void onListMenuTouched() {
         mUI.removeLevel2();
