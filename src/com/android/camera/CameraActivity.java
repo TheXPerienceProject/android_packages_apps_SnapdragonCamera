@@ -276,6 +276,8 @@ public class CameraActivity extends Activity
     private WakeLock mWakeLock;
     private static final int REFOCUS_ACTIVITY_CODE = 1;
 
+    private boolean mIsStartup = true;
+
     private class MyOrientationEventListener
             extends OrientationEventListener {
         public MyOrientationEventListener(Context context) {
@@ -2030,6 +2032,12 @@ public class CameraActivity extends Activity
     }
 
     protected void updateStorageSpaceAndHint() {
+        if (mIsStartup) {
+            if (!SDCard.instance().isWriteable()) {
+                Storage.setSaveSDCard(false);
+            }
+            mIsStartup = false;
+        }
         updateStorageSpace();
         updateStorageHint(mStorageSpaceBytes);
     }
