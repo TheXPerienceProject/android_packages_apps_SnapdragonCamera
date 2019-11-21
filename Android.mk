@@ -34,12 +34,10 @@ LOCAL_STATIC_JAVA_AAR_LIBRARIES += \
     qreader-core \
     qreader-zxing
 
-LOCAL_PACKAGE_NAME := Snap
+LOCAL_PACKAGE_NAME := SnapdragonCamera
 LOCAL_PRIVILEGED_MODULE := true
 LOCAL_PRIVATE_PLATFORM_APIS := true
 LOCAL_CERTIFICATE := platform
-
-LOCAL_AAPT_FLAGS += --rename-manifest-package org.lineageos.snap
 
 #LOCAL_SDK_VERSION := current
 LOCAL_RENDERSCRIPT_TARGET_API := 23
@@ -56,9 +54,9 @@ LOCAL_PROGUARD_FLAG_FILES := proguard.flags
 # leave them out of the APK
 
 ifneq (,$(TARGET_BUILD_APPS))
-  LOCAL_JNI_SHARED_LIBRARIES := libjni_snapmosaic libjni_snaptinyplanet libjni_snapimageutil
+  LOCAL_JNI_SHARED_LIBRARIES := libjni_snapcammosaic libjni_snapcamtinyplanet libjni_imageutil
 else
-  LOCAL_REQUIRED_MODULES := libjni_snapmosaic libjni_snaptinyplanet libjni_snapimageutil
+  LOCAL_REQUIRED_MODULES := libjni_snapcammosaic libjni_snapcamtinyplanet libjni_imageutil
 endif
 
 include $(BUILD_PACKAGE)
