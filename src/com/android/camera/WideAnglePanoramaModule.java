@@ -309,9 +309,6 @@ public class WideAnglePanoramaModule
         CameraSettings.upgradeGlobalPreferences(mPreferences.getGlobal(), activity);
         mLocationManager = new LocationManager(mActivity, null);
 
-        // Power shutter
-        mActivity.initPowerShutter(mPreferences);
-
         mMainHandler = new Handler() {
             @Override
             public void handleMessage(Message msg) {
@@ -973,10 +970,6 @@ public class WideAnglePanoramaModule
         }
         mUI.showPreviewCover();
         releaseCamera();
-
-        // Load the power shutter
-        mActivity.initPowerShutter(mPreferences);
-
         synchronized (mRendererLock) {
             mCameraTexture = null;
 
@@ -1276,43 +1269,14 @@ public class WideAnglePanoramaModule
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
 
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_VOLUME_UP:
-            case KeyEvent.KEYCODE_VOLUME_DOWN:
-            case KeyEvent.KEYCODE_MEDIA_NEXT:
-            case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
-                return true;
-            case KeyEvent.KEYCODE_CAMERA:
-            case KeyEvent.KEYCODE_HEADSETHOOK:
-                if (event.getRepeatCount() == 0) {
-                    onShutterButtonClick();
-                }
-                return true;
-            case KeyEvent.KEYCODE_POWER:
-                return true;
-        }
         return false;
     }
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_VOLUME_UP:
-            case KeyEvent.KEYCODE_VOLUME_DOWN:
-            case KeyEvent.KEYCODE_MEDIA_NEXT:
-            case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
-                if (!CameraActivity.mPowerShutter && !CameraUtil.hasCameraKey()) {
-                    onShutterButtonClick();
-                }
-                return true;
-            case KeyEvent.KEYCODE_POWER:
-                if (CameraActivity.mPowerShutter && !CameraUtil.hasCameraKey()) {
-                    onShutterButtonClick();
-                }
-                return true;
-        }
         return false;
     }
 

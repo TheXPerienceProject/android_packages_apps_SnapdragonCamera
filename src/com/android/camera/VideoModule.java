@@ -1530,44 +1530,26 @@ public class VideoModule implements CameraModule,
 
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
-            case KeyEvent.KEYCODE_MEDIA_NEXT:
-                if (event.getRepeatCount() == 0 && !CameraActivity.mPowerShutter &&
-                        !CameraUtil.hasCameraKey()) {
-                    mUI.clickShutter();
-                } else {
-                    mUI.onScaleStepResize(true);
-                }
+                mUI.onScaleStepResize(true);
                 return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
-            case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
-                if (event.getRepeatCount() == 0 && !CameraActivity.mPowerShutter &&
-                        !CameraUtil.hasCameraKey()) {
-                    mUI.clickShutter();
-                } else {
-                    mUI.onScaleStepResize(false);
-                }
+                mUI.onScaleStepResize(false);
                 return true;
             case KeyEvent.KEYCODE_CAMERA:
             case KeyEvent.KEYCODE_HEADSETHOOK:
                 if (event.getRepeatCount() == 0) {
                     mUI.clickShutter();
+                    return true;
                 }
-                return true;
+                break;
             case KeyEvent.KEYCODE_DPAD_CENTER:
                 if (event.getRepeatCount() == 0) {
                     mUI.clickShutter();
-                }
-                return true;
-            case KeyEvent.KEYCODE_POWER:
-                if (event.getRepeatCount() == 0 && CameraActivity.mPowerShutter &&
-                        !CameraUtil.hasCameraKey()) {
-                    mUI.clickShutter();
-                }
-                return true;
-            case KeyEvent.KEYCODE_MENU:
-                if (mMediaRecorderRecording) {
                     return true;
                 }
+                break;
+            case KeyEvent.KEYCODE_MENU:
+                if (mMediaRecorderRecording) return true;
                 break;
         }
         return false;
@@ -1577,24 +1559,15 @@ public class VideoModule implements CameraModule,
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_VOLUME_UP:
-            case KeyEvent.KEYCODE_MEDIA_NEXT:
-                if (!CameraActivity.mPowerShutter && !CameraUtil.hasCameraKey()) {
-                    mUI.pressShutter(false);
-                }
-                return true;
             case KeyEvent.KEYCODE_VOLUME_DOWN:
-            case KeyEvent.KEYCODE_MEDIA_PREVIOUS:
-                if (!CameraActivity.mPowerShutter && !CameraUtil.hasCameraKey()) {
-                    mUI.pressShutter(false);
-                }
                 return true;
             case KeyEvent.KEYCODE_CAMERA:
             case KeyEvent.KEYCODE_HEADSETHOOK:
                 mUI.pressShutter(false);
                 return true;
             case KeyEvent.KEYCODE_POWER:
-                if (CameraActivity.mPowerShutter && !CameraUtil.hasCameraKey()) {
-                    mUI.pressShutter(false);
+                if (CameraActivity.mPowerShutter) {
+                    onShutterButtonClick();
                 }
                 return true;
         }
