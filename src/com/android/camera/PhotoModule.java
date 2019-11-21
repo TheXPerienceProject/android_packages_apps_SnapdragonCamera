@@ -5009,8 +5009,6 @@ public class PhotoModule
         if (mUI.mMenuInitialized) {
             setCameraParametersWhenIdle(UPDATE_PARAM_PREFERENCE);
             mActivity.initMaxBrightness(mPreferences);
-            mUI.updateOnScreenIndicators(mParameters, mPreferenceGroup,
-                mPreferences);
         } else {
             mHandler.sendEmptyMessage(SET_PHOTO_UI_PARAMS);
         }

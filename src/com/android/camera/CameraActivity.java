@@ -2095,7 +2095,7 @@ public class CameraActivity extends Activity
 
         mMaxBrightness = val.equals(CameraSettings.VALUE_ON);
 
-        if (mMaxBrightness && mInCameraApp) {
+        if (mMaxBrightness) {
             params.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_FULL;
         } else {
             params.screenBrightness = WindowManager.LayoutParams.BRIGHTNESS_OVERRIDE_NONE;

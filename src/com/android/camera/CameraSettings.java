@@ -284,6 +284,9 @@ public class CameraSettings {
 
     public static final String EXPOSURE_DEFAULT_VALUE = "0";
 
+    public static final String VALUE_ON = "on";
+    public static final String VALUE_OFF = "off";
+
     public static final int CURRENT_VERSION = 5;
     public static final int CURRENT_LOCAL_VERSION = 2;
 
@@ -459,7 +462,7 @@ public class CameraSettings {
        if ( CamcorderProfileWrapper.QUALITY_4KDCI != -1 ) {
            VIDEO_QUALITY_TO_HIGHSPEED.put(CamcorderProfileWrapper.QUALITY_4KDCI, CamcorderProfileWrapper.QUALITY_HIGH_SPEED_4KDCI);
        }
-   } 
+   }
 
    public static int getHighSpeedQualityFor(int quality) {
        return VIDEO_QUALITY_TO_HIGHSPEED.get(quality);
