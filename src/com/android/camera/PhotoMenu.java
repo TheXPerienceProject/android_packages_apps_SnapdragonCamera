@@ -1,6 +1,5 @@
 /*
  * Copyright (C) 2012 The Android Open Source Project
- * Copyright (C) 2013-2015 The CyanogenMod Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -199,7 +198,6 @@ public class PhotoMenu extends MenuController
                 CameraSettings.KEY_REDEYE_REDUCTION,
                 CameraSettings.KEY_SELFIE_MIRROR,
                 CameraSettings.KEY_SHUTTER_SOUND,
-                CameraSettings.KEY_POWER_SHUTTER,
                 CameraSettings.KEY_MAX_BRIGHTNESS,
                 CameraSettings.KEY_SATURATION,
                 CameraSettings.KEY_CONTRAST,
@@ -228,7 +226,6 @@ public class PhotoMenu extends MenuController
                 CameraSettings.KEY_FOCUS_TIME,
                 CameraSettings.KEY_SHUTTER_SPEED,
                 CameraSettings.KEY_REDEYE_REDUCTION,
-                CameraSettings.KEY_POWER_SHUTTER,
                 CameraSettings.KEY_MAX_BRIGHTNESS,
                 CameraSettings.KEY_SATURATION,
                 CameraSettings.KEY_CONTRAST,
