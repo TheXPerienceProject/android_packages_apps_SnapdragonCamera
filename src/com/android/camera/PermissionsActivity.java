@@ -27,16 +27,19 @@ public class PermissionsActivity extends Activity {
     private int mIndexPermissionRequestLocation;
     private int mIndexPermissionRequestStorageWrite;
     private int mIndexPermissionRequestStorageRead;
+    private int mIndexPermissionRequestWriteStorage;
     private boolean mShouldRequestCameraPermission;
     private boolean mShouldRequestMicrophonePermission;
     private boolean mShouldRequestLocationPermission;
     private boolean mShouldRequestFineLocationPermission;
     private boolean mShouldRequestStoragePermission;
+    private boolean mShouldRequestWriteStoragePermission;
     private int mNumPermissionsToRequest;
     private boolean mFlagHasCameraPermission;
     private boolean mFlagHasMicrophonePermission;
     private boolean mFlagHasStoragePermission;
     private boolean mCriticalPermissionDenied;
+    private boolean mFlagHasWriteStoragePermission;
     private Intent mIntent;
     private boolean mIsReturnResult;
 
@@ -52,7 +55,7 @@ public class PermissionsActivity extends Activity {
             mCriticalPermissionDenied = false;
         }
     }
-    
+
     private void checkPermissions() {
         if (checkSelfPermission(Manifest.permission.CAMERA)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -79,7 +82,13 @@ public class PermissionsActivity extends Activity {
         } else {
             mFlagHasStoragePermission = true;
         }
-
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            mNumPermissionsToRequest++;
+            mShouldRequestWriteStoragePermission = true;
+        } else {
+            mFlagHasWriteStoragePermission = true;
+        }
         if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             mNumPermissionsToRequest++;
@@ -122,6 +131,11 @@ public class PermissionsActivity extends Activity {
             mIndexPermissionRequestStorageRead = permissionsRequestIndex;
             permissionsRequestIndex++;
 
+        }
+        if (mShouldRequestWriteStoragePermission) {
+            permissionsToRequest[permissionsRequestIndex] = Manifest.permission.WRITE_EXTERNAL_STORAGE;
+            mIndexPermissionRequestWriteStorage = permissionsRequestIndex;
+            permissionsRequestIndex++;
         }
         if (mShouldRequestLocationPermission) {
             permissionsToRequest[permissionsRequestIndex] =
@@ -169,7 +183,14 @@ public class PermissionsActivity extends Activity {
                 mCriticalPermissionDenied = true;
             }
         }
-
+        if (mShouldRequestWriteStoragePermission) {
+            if (grantResults.length > 0 && grantResults[mIndexPermissionRequestWriteStorage] ==
+                    PackageManager.PERMISSION_GRANTED) {
+                mFlagHasWriteStoragePermission = true;
+            } else {
+                handlePermissionsFailure();
+            }
+        }
         if (mShouldRequestLocationPermission) {
             if ((grantResults.length >= mIndexPermissionRequestLocation + 1) &&
                 (grantResults[mIndexPermissionRequestLocation] ==
@@ -181,7 +202,7 @@ public class PermissionsActivity extends Activity {
         }
 
         if (mFlagHasCameraPermission && mFlagHasMicrophonePermission &&
-                mFlagHasStoragePermission) {
+                mFlagHasStoragePermission && mFlagHasWriteStoragePermission) {
             handlePermissionsSuccess();
         } else if (mCriticalPermissionDenied) {
             handlePermissionsFailure();
