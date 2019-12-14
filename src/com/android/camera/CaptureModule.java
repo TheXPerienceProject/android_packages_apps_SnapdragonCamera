@@ -2403,14 +2403,8 @@ public class CaptureModule implements CameraModule, PhotoController,
                                         CaptureFailure result) {
                 Log.d(TAG, "captureStillPictureForLongshot onCaptureFailed.");
                 if (mLongshotActive) {
-                    mActivity.runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            mUI.doShutterAnimation();
-                        }
-                    });
-                }
                 mLongshoting = false;
+		}
             }
 
             @Override
