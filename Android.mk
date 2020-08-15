@@ -62,6 +62,8 @@ else
   LOCAL_REQUIRED_MODULES := libjni_snapcammosaic libjni_snapcamtinyplanet libjni_imageutil
 endif
 
+LOCAL_REQUIRED_MODULES += privapp_whitelist_mx.xperience.camera.xml
+
 include $(BUILD_PACKAGE)
 
 include $(CLEAR_VARS)
